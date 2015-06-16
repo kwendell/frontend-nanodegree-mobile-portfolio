@@ -522,6 +522,11 @@ function updatePositions() {
   // Prefer getElementsByClassName() to getAll().
   var items = document.getElementsByClassName('mover');
 
+
+  // Avoid touching the doc by moving the expression
+  // outside the loop.
+  var scrollTopNormalized = document.body.scrollTop / 1250;
+
  // if (frame % 2==0) {
   // Since there are only 5 possible
   // values for the phase, compute them once
@@ -531,7 +536,7 @@ function updatePositions() {
 
   phases = [] ;
   for (var k = 0; k < 5; k++)  {
-      phases[k] = Math.sin((document.body.scrollTop / 1250) + (k));
+      phases[k] = Math.sin((scrollTopNormalized) + (k));
   }
 
   var horizOffset = 0.5*viewportWidth;
@@ -570,15 +575,14 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   //var cols = 8;
   var s = 256;
-  viewportWidth = $(window).width();
-  viewportHeight = $(window).height();
+
   /*
    * Compute the number of pizzas needed
    * based on the view port dimension.
    */
    // max visible columns
-   var cols = Math.ceil(viewportWidth/s);
-   var rows = Math.ceil(viewportHeight/s);
+   var cols = Math.ceil(window.innerWidth/s);
+   var rows = Math.ceil(window.innerHeight/s);
    var maxNumPizzas = cols*rows;
 
 
