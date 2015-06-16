@@ -575,13 +575,14 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   //var cols = 8;
   var s = 256;
-
+  viewportWidth = window.innerWidth;
+  viewportHeight = window.innerHeight;
   /*
    * Compute the number of pizzas needed
    * based on the view port dimension.
    */
    // max visible columns
-   var cols = Math.ceil(window.innerWidth/s);
+   var cols = Math.ceil(viewportWidth/s);
    var rows = Math.ceil(window.innerHeight/s);
    var maxNumPizzas = cols*rows;
 
