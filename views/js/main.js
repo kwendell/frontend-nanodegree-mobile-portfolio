@@ -527,7 +527,6 @@ function updatePositions() {
   // outside the loop.
   var scrollTopNormalized = document.body.scrollTop / 1250;
 
- // if (frame % 2==0) {
   // Since there are only 5 possible
   // values for the phase, compute them once
   // and place in an array to minimize
@@ -542,11 +541,13 @@ function updatePositions() {
   var horizOffset = 0.5*viewportWidth;
   /*
    * Prefer style.transform to style.left in accordance
-   * with the recommendations from Paul's web page.
+   * with the recommendations from Paul's web page.   This
+   * allows more burden to be placed on the GPU, less
+   * on repainting, (translate + transform)
    */
 
   for (var i = 0; i < items.length; i++) {
-    //items[i].style.left = items[i].basicLeft + 100 * phases[i % 5] + 'px';
+    // Compute the offset from the phase
     var basicLeftNum = parseInt(items[i].basicLeft);
     var translateXExpressionNumeric = items[i].basicLeft + 100 * phases[i % 5];
     translateXExpressionNumeric=translateXExpressionNumeric-horizOffset;
