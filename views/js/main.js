@@ -465,8 +465,8 @@ var resizePizzas = function(size) {
     //  at each iteration of the loop.
     var pizzaContainerArray = document.getElementsByClassName("randomPizzaContainer");
     var pizzaContainerLen =pizzaContainerArray.length;
-    // Save DOM querty time by using the first element to compute newWidth, dx AND
-    // prefer .getElementsByClassName().
+    // Save DOM querty time by using the first element to compute newWidth, dx.
+
     var dx = determineDx(document.getElementsByClassName("randomPizzaContainer")[0], size);
     var newwidth = (document.getElementsByClassName("randomPizzaContainer")[0].offsetWidth + dx) + 'px';
 
